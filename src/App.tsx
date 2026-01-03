@@ -9,6 +9,17 @@ function App() {
     document.getElementById('audit-form')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const scheduleCall = () => {
+    window.open("https://rhytmelo.com/call", "_blank");
+  };
+
+  const customProposal = () => {
+    window.open("https://rhytmelo.com/inquiry", "_blank");
+  };
+  const proofOfConcept = () => {
+    document.getElementById('proof-of-concept')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation Bar */}
@@ -176,7 +187,7 @@ function App() {
           <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl opacity-20 -mr-48 -mt-48"></div>
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl opacity-20 -ml-48 -mb-48"></div>
 
-          <div className="container mx-auto px-6">
+          <div className="container mx-auto px-6" id='proof-of-concept'>
             <div className="max-w-7xl mx-auto relative z-10">
               <div className="text-center mb-16">
                 <div className="inline-flex items-center gap-2 bg-emerald-500/20 border border-emerald-400/30 rounded-full px-4 py-2 mb-6">
@@ -393,7 +404,7 @@ function App() {
 
               <div className="text-center mt-12">
                 <button
-                  onClick={scrollToCTA}
+                  onClick={customProposal}
                   className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 inline-flex items-center gap-2"
                 >
                   Request a Custom Proposal
@@ -451,7 +462,7 @@ function App() {
 
               <div className="text-center mt-12">
                 <button
-                  onClick={scrollToCTA}
+                  onClick={scheduleCall}
                   className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50 inline-flex items-center gap-2 hover:scale-105"
                 >
                   Talk to a Conversion Specialist
@@ -489,7 +500,7 @@ function App() {
 
               <div className="text-center mt-12">
                 <button
-                  onClick={scrollToCTA}
+                  onClick={proofOfConcept}
                   className="bg-white text-slate-900 hover:bg-slate-100 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 inline-flex items-center gap-2 hover:scale-105"
                 >
                   Show Me the Impact
@@ -616,7 +627,7 @@ function App() {
                   <div>
                     <input
                       type="url"
-                      placeholder="Your Shopify Store URL"
+                      placeholder="https://yourstore.com or Instagram Profile"
                       className="w-full px-6 py-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                       required
                     />
@@ -644,7 +655,7 @@ function App() {
               <div className="mt-12">
                 <p className="text-slate-400 mb-4">Or schedule a call directly:</p>
                 <button
-                  onClick={scrollToCTA}
+                  onClick={scheduleCall}
                   className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 border border-white/20 inline-flex items-center gap-2"
                 >
                   Schedule a Strategy Call
