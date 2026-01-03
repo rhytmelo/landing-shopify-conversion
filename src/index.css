@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+px-6{
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+py-4{
+    padding-top: 1rem;
+    padding-bottom: 1rem; 
+}
