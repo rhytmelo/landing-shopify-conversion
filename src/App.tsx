@@ -1,4 +1,4 @@
-import { ArrowRight, CheckCircle2, Zap, TrendingUp, ShoppingCart, Smartphone, Clock, Star, ChevronDown, Menu, X } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Zap, TrendingUp, ShoppingCart, Smartphone, Clock, Star, ChevronDown, Menu, X, MessageCircle } from 'lucide-react';
 import { useState } from 'react';
 
 function App() {
@@ -172,6 +172,106 @@ function App() {
           </div>
         </section>
 
+        <section className="py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl opacity-20 -mr-48 -mt-48"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl opacity-20 -ml-48 -mb-48"></div>
+
+          <div className="container mx-auto px-6">
+            <div className="max-w-7xl mx-auto relative z-10">
+              <div className="text-center mb-16">
+                <div className="inline-flex items-center gap-2 bg-emerald-500/20 border border-emerald-400/30 rounded-full px-4 py-2 mb-6">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  <span className="text-sm font-medium text-emerald-300">Live Projects</span>
+                </div>
+                <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+                  Proof of Concept
+                </h2>
+                <p className="text-xl text-slate-300 max-w-2xl mx-auto">
+                  Real stores we've redesigned that are now converting at higher rates. Hover to explore each project.
+                </p>
+              </div>
+
+              {/* Project Tiles Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                {[
+                  { image: 'Kristore-sull-page-screenshot.png', name: 'Kristore', category: 'Fashion & Accessories', url: 'https://kristore.in' },
+                  { image: 'bacf-org-in-full-page-screenshot.png', name: 'BACF', category: 'Organization', url: 'https://bacf.org.in' },
+                  { image: 'beebliss-full-page-screenshot.png', name: 'Bee Bliss', category: 'Wellness & Honey', url: 'https://beebliss.co.in' },
+                  { image: 'hansagro-full-page-screenshot.png', name: 'HansAgro', category: 'Agriculture', url: 'https://web.archive.org/web/20241004004606/https://hansagro.in/' },
+                  { image: 'nutricrop-co-in-fullscreenshot.png', name: 'NutriCrop', category: 'Health & Nutrition', url: 'https://nutricrop.co.in' },
+                  { image: 'sm-plastic-full-screenshot.png', name: 'SM Plastic', category: 'Industrial', url: 'https://smplastic.in' }
+                ].map((project, i) => (
+                  <div
+                    key={i}
+                    className="group relative rounded-2xl overflow-hidden shadow-2xl hover:shadow-emerald-500/40 transition-all duration-500 hover:scale-105 bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 hover:border-emerald-400/50 will-change-transform"
+                    style={{
+                      animationDelay: `${i * 0.1}s`,
+                    }}
+                  >
+                    {/* Scrolling Container */}
+                    <div className="relative w-full h-96 overflow-hidden bg-slate-100">
+                      <div className="absolute inset-0 animate-scroll-vertical group-hover:animation-pause">
+                        <img
+                          src={`https://cdn.rhytmelo.com/project-snapshots/pictures/${project.image}`}
+                          alt={project.name}
+                          className="w-full h-auto object-cover"
+                          onError={(e) => {
+                            e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 800"%3E%3Crect fill="%23f1f5f9" width="400" height="800"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%2364748b" font-family="system-ui" font-size="16"%3EProject Screenshot%3C/text%3E%3C/svg%3E';
+                          }}
+                        />
+                      </div>
+
+                      {/* Gradient overlays */}
+                      <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-slate-900 via-slate-900 to-transparent z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-slate-900 via-slate-900 to-transparent z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                      {/* Category Badge */}
+                      <div className="absolute top-4 left-4 z-10 bg-emerald-500/90 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        {project.category}
+                      </div>
+                    </div>
+
+                    {/* Project Info Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col items-end justify-end p-6 z-30 pointer-events-none group-hover:pointer-events-auto">
+                      <div className="w-full">
+                        <h3 className="text-2xl font-bold text-white mb-1">{project.name}</h3>
+                        <p className="text-slate-300 text-sm mb-4">{project.category}</p>
+                        <a
+                          href={project.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-emerald-400 font-semibold hover:text-emerald-300 transition-colors duration-300 pointer-events-auto"
+                        >
+                          View Live <ArrowRight className="w-4 h-4" />
+                        </a>
+                      </div>
+                    </div>
+
+                    {/* Play indicator badge */}
+                    <div className="absolute top-4 right-4 z-10 bg-slate-900/80 backdrop-blur-sm px-3 py-1.5 rounded-lg text-emerald-400 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      Auto Scroll
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="relative z-10 bg-gradient-to-r from-emerald-500/10 via-cyan-500/10 to-emerald-500/10 border border-emerald-400/20 rounded-2xl p-8 md:p-12 text-center mb-12">
+                <h3 className="text-2xl font-bold text-white mb-2">Ready to Join These Success Stories?</h3>
+                <p className="text-slate-300 mb-6 max-w-2xl mx-auto">
+                  See how we're helping D2C brands convert more traffic into revenue
+                </p>
+                <button
+                  onClick={scrollToCTA}
+                  className="bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50 inline-flex items-center gap-2 hover:scale-105"
+                >
+                  Start Your Project
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="py-20 bg-gradient-to-br from-slate-900 to-slate-800 text-white">
           <div className="container mx-auto px-6">
             <div className="max-w-5xl mx-auto">
@@ -186,7 +286,7 @@ function App() {
                 <div className="space-y-6">
                   <div className="flex items-start gap-4 bg-red-500/10 p-6 rounded-xl border border-red-500/20">
                     <div className="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center flex-shrink-0">
-                      <span className="px-6 py-4 text-2xl font-bold text-red-400">70%</span>
+                      <span className="text-2xl font-bold text-red-400">70%</span>
                     </div>
                     <div>
                       <h3 className="font-bold text-xl mb-2">Abandoned Carts</h3>
@@ -562,6 +662,18 @@ function App() {
           </div>
         </footer>
 
+        <a
+          href="https://wa.me/919899885363?text=Hi%20Rhytmelo%2C%20I%27m%20interested%20in%20improving%20my%20Shopify%20store%20conversions."
+          target="_blank"
+          rel="noopener noreferrer"
+          className="fixed bottom-6 right-6 z-40 group bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-2xl hover:shadow-green-500/50 transition-all duration-300 hover:scale-110 will-change-transform"
+        >
+          <MessageCircle className="w-6 h-6 animate-bounce-slow" />
+          <div className="absolute bottom-full right-0 mb-3 bg-slate-900 text-white px-4 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none shadow-xl">
+            Chat with us on WhatsApp
+          </div>
+        </a>
+
         <style>{`
           @keyframes fade-in {
             from { opacity: 0; }
@@ -579,13 +691,96 @@ function App() {
             }
           }
 
+          @keyframes scroll-vertical {
+            0% {
+              transform: translateY(0);
+            }
+            100% {
+              transform: translateY(-100%);
+            }
+          }
+
+          @keyframes bounce-slow {
+            0%, 100% {
+              transform: translateY(0);
+            }
+            50% {
+              transform: translateY(-8px);
+            }
+          }
+
+          @keyframes glow-pulse {
+            0%, 100% {
+              box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+            }
+            50% {
+              box-shadow: 0 0 30px rgba(34, 197, 94, 0.8);
+            }
+          }
+
+          @keyframes shimmer {
+            0% {
+              background-position: -1000px 0;
+            }
+            100% {
+              background-position: 1000px 0;
+            }
+          }
+
           .animate-fade-in {
             animation: fade-in 0.6s ease-out;
+            will-change: opacity;
           }
 
           .animate-slide-up {
-            animation: slide-up 0.8s ease-out;
+            animation: slide-up 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
             animation-fill-mode: both;
+            will-change: opacity, transform;
+          }
+
+          .animate-scroll-vertical {
+            animation: scroll-vertical 20s linear infinite;
+            will-change: transform;
+          }
+
+          .animate-bounce-slow {
+            animation: bounce-slow 2.5s ease-in-out infinite;
+            will-change: transform;
+          }
+
+          /* GPU acceleration for smooth transitions */
+          button, a {
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+          }
+
+          /* Smooth transitions */
+          * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+          }
+
+          /* Disable transitions on animations */
+          .animate-slide-up,
+          .animate-fade-in,
+          .animate-scroll-vertical,
+          .animate-bounce-slow {
+            transition: none;
+          }
+
+          /* Pause animation on hover */
+          .group-hover\\:animation-pause:hover {
+            animation-play-state: paused;
+          }
+
+          /* Smooth link transitions */
+          a {
+            transition: color 0.3s ease, text-decoration 0.3s ease;
+          }
+
+          /* Prevent layout shift on scale */
+          img {
+            will-change: transform;
           }
         `}</style>
       </div>
