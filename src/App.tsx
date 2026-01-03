@@ -1,4 +1,4 @@
-import { ArrowRight, CheckCircle2, Zap, TrendingUp, ShoppingCart, Smartphone, Clock, Star, ChevronDown, Menu, X, MessageCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Zap, TrendingUp, ShoppingCart, Smartphone, Clock, Star, ChevronDown, Menu, X, MessageCircleMore } from 'lucide-react';
 import { useState } from 'react';
 
 function App() {
@@ -668,7 +668,7 @@ function App() {
           rel="noopener noreferrer"
           className="fixed bottom-6 right-6 z-40 group bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-2xl hover:shadow-green-500/50 transition-all duration-300 hover:scale-110 will-change-transform"
         >
-          <MessageCircle className="w-6 h-6 animate-bounce-slow" />
+          <MessageCircleMore className="w-6 h-6 animate-bounce-slow" />
           <div className="absolute bottom-full right-0 mb-3 bg-slate-900 text-white px-4 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none shadow-xl">
             Chat with us on WhatsApp
           </div>
