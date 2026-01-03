@@ -14,7 +14,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
+  check:
+    name: Code Quality Checks
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -32,6 +33,21 @@ jobs:
     
     - name: Lint
       run: npm run lint
+
+  build:
+    name: Build Application
+    needs: check
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+    
+    - name: Install dependencies
+      run: npm install
     
     - name: Build with Vite
       run: npm run build
@@ -42,14 +58,40 @@ jobs:
           echo "Error: dist folder is empty or missing"
           exit 1
         fi
-        echo "Build output verified"
+        echo "✅ Build output verified"
     
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
         path: 'dist'
-    
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
     - name: Deploy to GitHub Pages
-      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       id: deployment
       uses: actions/deploy-pages@v4
+    
+    - name: Print deployment URL
+      run: |
+        echo "🚀 Deployment Successful!"
+        echo "📍 Website is live at: ${{ steps.deployment.outputs.page_url }}"
+        echo "✨ Your changes are now publicly available!"
+
+  skip-deploy:
+    name: Skip Deployment (CI skipped)
+    needs: build
+    runs-on: ubuntu-latest
+    if: "contains(github.event.head_commit.message, '[skip ci]')"
+    steps:
+    - name: Notify skip
+      run: |
+        echo "⏭️  Deployment skipped due to [skip ci] in commit message"
+        echo "✅ Code quality checks and build passed successfully"
+        echo "🔄 No changes deployed to GitHub Pages"
