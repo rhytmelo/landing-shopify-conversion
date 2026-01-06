@@ -29,8 +29,10 @@ function App() {
             {/* Logo */}
             <div className="flex-shrink-0">
               <img 
-                src="https://cdn.rhytmelo.com/public/brand/logos/logo-final/pngs/rhytmelo-logo-black.png"
+                src="/brand-assets/rhytmelo-logo-black.svg"
                 alt="Rhytmelo Logo"
+                width={128}
+                height={32}
                 className="h-8 w-auto"
               />
             </div>
